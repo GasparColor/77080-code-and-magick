@@ -35,7 +35,7 @@ window.renderStatistics = function (ctx, names, times) {
   var histogramHeigth = -150;
   var step = histogramHeigth / (max - 0);
 
-  ctx.fillText('Худшее время: ' + max.toFixed(2) + 'мс у игрока ' + names[maxIndex], 120, 60);
+  ctx.fillText('Список результатов: ', 120, 60);
 
   var histogramWidth = 40;
   var initialX = 160;
