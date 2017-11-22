@@ -31,18 +31,15 @@ window.renderStatistics = function (ctx, names, times) {
   var getRandomValue = function (minValue, maxValue) {
     return Math.random() * (maxValue - minValue) + minValue;
   };
-  var histogramWidth = 40;
-  var histogramHeigth = 150;
+
+  var histogramHeigth = -150;
   var step = histogramHeigth / (max - 0);
 
   ctx.fillText('Худшее время: ' + max.toFixed(2) + 'мс у игрока ' + names[maxIndex], 120, 60);
 
-
-  var indent = 70;
-  var initialX = 140;
-  var initialY = 100;
-  var lineHeight = 40;
-  var initialNameX = 265;
+  var histogramWidth = 40;
+  var initialX = 160;
+  var columnWidth = 80;
 
 
   for (i = 0; i < times.length; i++) {
@@ -50,15 +47,15 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = 'black';
 
     // Скорость прохождения fillText(text, x, y [, maxWidth]);
-    ctx.fillText(Math.round(times[i]), initialX + indent * i, 90);
+    ctx.fillText(Math.round(times[i]), initialX + columnWidth * i, 90);
     ctx.fillStyle = (names[i] === 'Вы') ? 'red' : 'rgba(0, 0, 255, ' + getRandomValue(0.1, 1) + ')';
 
     // Гистограмма fillRect(x, y, width, height)
-    ctx.fillRect(initialX + indent * i, initialY, histogramWidth, times[i] * step);
+    ctx.fillRect(initialX + columnWidth * i, 250, histogramWidth, times[i] * step);
     ctx.fillStyle = 'black';
 
     // Имя игрока - fillText(text, x, y [, maxWidth]);
-    ctx.fillText(names[i], initialY + lineHeight + indent * i, initialNameX);
+    ctx.fillText(names[i], initialX + columnWidth * i, 265);
 
   }
 };
